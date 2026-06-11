@@ -170,20 +170,57 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .timeline-medals{display:flex;gap:12px;flex-wrap:wrap;margin-top:6px}
 .timeline-medals span{font-size:.82rem;color:var(--gold-light);font-weight:600}
 
-/* ==================== 教练团队照片卡片 ==================== */
+/* ==================== 教练团队（详细版卡片） ==================== */
 .coach-team-section{background:var(--white)}
-.coach-team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;max-width:1000px;margin:0 auto}
-.team-card{background:var(--white);border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--slate-100);transition:all .4s var(--ease);text-align:center}
-.team-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-color:var(--sky-200)}
-.team-card-photo{aspect-ratio:3/4;overflow:hidden;position:relative}
-.team-card-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.25) 0%,transparent 40%);pointer-events:none}
-.team-card-img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s var(--ease-out)}
-.team-card:hover .team-card-img{transform:scale(1.06)}
-.team-card-info{padding:20px 16px 24px}
-.team-card-info h3{font-size:1.1rem;font-weight:700;color:var(--slate-900);margin-bottom:4px;letter-spacing:1px}
-.team-card-role{font-size:.82rem;color:var(--sky-600);font-weight:600}
-@media (max-width:1024px){.coach-team-grid{grid-template-columns:repeat(2,1fr);max-width:500px}}
-@media (max-width:500px){.coach-team-grid{grid-template-columns:repeat(2,1fr);gap:16px}.team-card-info{padding:14px 10px 18px}.team-card-info h3{font-size:1rem}}
+.coach-detail-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+
+.coach-card{background:var(--white);border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--slate-100);transition:all .4s var(--ease);display:flex;flex-direction:column}
+.coach-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--sky-200)}
+
+.coach-card-top{display:flex;gap:0;align-items:stretch}
+.coach-card-photo{width:140px;min-height:180px;flex-shrink:0;overflow:hidden;position:relative}
+.coach-card-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.coach-photo-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--sky-400),var(--sky-700));color:var(--white);font-size:2rem;font-weight:800;letter-spacing:4px;min-height:180px}
+
+.coach-card-basics{flex:1;padding:16px 16px 16px 14px;display:flex;flex-direction:column;gap:6px;justify-content:center}
+.coach-card-basics h3{font-size:1.2rem;font-weight:800;color:var(--slate-900);letter-spacing:2px;margin-bottom:2px}
+.coach-meta-row{display:flex;justify-content:space-between;align-items:center;font-size:.78rem}
+.cm-label{color:var(--slate-400);font-size:.7rem;text-transform:uppercase;letter-spacing:1px}
+.cm-val{color:var(--slate-700);font-weight:600}
+.coach-level-badge{color:var(--sky-600);background:var(--sky-50);padding:2px 8px;border-radius:100px;font-size:.72rem}
+
+.coach-card-tags{display:flex;flex-wrap:wrap;gap:6px;padding:0 16px 12px}
+.coach-card-tags span{display:inline-block;padding:3px 12px;background:var(--sky-50);color:var(--sky-700);font-size:.72rem;font-weight:600;border-radius:100px;letter-spacing:.5px}
+
+.coach-card-summary{padding:0 16px 12px;font-size:.82rem;color:var(--slate-500);line-height:1.7}
+
+.coach-detail-toggle{display:flex;align-items:center;justify-content:center;gap:6px;width:calc(100% - 32px);margin:0 16px 16px;padding:9px 0;font-size:.8rem;font-weight:600;color:var(--sky-600);background:var(--sky-50);border-radius:var(--radius);border:none;cursor:pointer;transition:all .3s var(--ease);font-family:var(--font-cn)}
+.coach-detail-toggle:hover{background:var(--sky-100);color:var(--sky-700)}
+.coach-detail-toggle.active{background:var(--sky-100);color:var(--sky-700)}
+.toggle-arrow{transition:transform .35s var(--ease-out);font-size:.7rem}
+.coach-detail-toggle.active .toggle-arrow{transform:rotate(180deg)}
+
+.coach-detail-body{display:none;padding:0 16px 20px;animation:fadeSlideIn .4s var(--ease-out)}
+.coach-detail-body.show{display:block}
+.coach-detail-section{padding:14px 0;border-top:1px solid var(--slate-100)}
+.coach-detail-section:first-child{border-top:none;padding-top:0}
+.coach-detail-section h4{font-size:.85rem;font-weight:700;color:var(--slate-800);margin-bottom:6px}
+.coach-detail-section p{font-size:.8rem;color:var(--slate-500);line-height:1.8}
+
+@keyframes fadeSlideIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+
+@media (max-width:1024px){
+  .coach-detail-grid{grid-template-columns:repeat(2,1fr);gap:20px}
+  .coach-card-top{flex-direction:column}
+  .coach-card-photo{width:100%;min-height:220px;aspect-ratio:4/3}
+}
+@media (max-width:600px){
+  .coach-detail-grid{grid-template-columns:1fr;max-width:400px;margin:0 auto}
+  .coach-card-top{flex-direction:row}
+  .coach-card-photo{width:120px;min-height:160px;flex-shrink:0}
+  .coach-card-basics{padding:12px}
+  .coach-card-basics h3{font-size:1.05rem}
+}
 
 /* ==================== 青训体系 5 列 ==================== */
 .academy-section{background:var(--slate-50)}
@@ -202,6 +239,13 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .tier-method{display:block;margin-top:12px;font-size:.72rem;color:var(--sky-600);font-weight:600;letter-spacing:.5px}
 .tier-recommend{display:inline-block;margin-top:12px;padding:3px 12px;background:var(--gold);color:var(--white);font-size:.7rem;font-weight:700;border-radius:100px;letter-spacing:1px}
 
+/* 青训体系 - 丰富内容 */
+.academy-tier-rich{padding:20px 16px 24px;text-align:left}
+.tier-field{margin-bottom:14px}
+.tier-field:last-child{margin-bottom:0}
+.tier-field-label{display:block;font-size:.68rem;font-weight:700;color:var(--sky-500);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:4px}
+.tier-field p{font-size:.78rem;color:var(--slate-500);line-height:1.7}
+
 /* CTA */
 .trial-cta{margin-top:56px;padding:48px 56px;background:linear-gradient(135deg,var(--sky-500),var(--sky-700));border-radius:var(--radius-xl);display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap}
 .trial-cta-content h3{font-size:1.4rem;font-weight:700;color:var(--white);margin-bottom:6px}
@@ -209,6 +253,21 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .trial-cta-buttons{display:flex;gap:14px;flex-wrap:wrap;flex-shrink:0}
 .trial-cta .btn-accent{background:var(--white);color:var(--sky-600);box-shadow:0 8px 24px rgba(0,0,0,.2)}
 .trial-cta .btn-accent:hover{background:var(--sky-50);box-shadow:0 12px 32px rgba(0,0,0,.25)}
+.trial-cta .btn-phone{background:var(--white);color:var(--green-600);box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.trial-cta .btn-phone:hover{background:var(--green-50);box-shadow:0 12px 32px rgba(0,0,0,.25)}
+
+/* ==================== 为什么选择豪锐 ==================== */
+.advantages-section{background:var(--white)}
+.advantages-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.advantage-card{background:var(--white);border:1px solid var(--slate-100);border-radius:var(--radius-lg);padding:36px 28px;text-align:center;transition:all .4s var(--ease)}
+.advantage-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--sky-200)}
+.advantage-icon-wrap{margin-bottom:16px}
+.advantage-icon{font-size:2.6rem;display:inline-block;transition:transform .3s var(--ease-out)}
+.advantage-card:hover .advantage-icon{transform:scale(1.15)}
+.advantage-card h3{font-size:1.08rem;font-weight:700;color:var(--slate-900);margin-bottom:10px;letter-spacing:1px}
+.advantage-card p{font-size:.85rem;color:var(--slate-500);line-height:1.8}
+@media (max-width:1024px){.advantages-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:600px){.advantages-grid{grid-template-columns:1fr;max-width:400px;margin:0 auto}}
 
 /* ==================== 俱乐部荣誉 ==================== */
 .honors-section{padding:100px 0;background:linear-gradient(180deg,var(--slate-900),var(--slate-950));color:var(--white)}
@@ -223,6 +282,99 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .honor-content p{font-size:.88rem;color:var(--slate-300);line-height:1.7}
 .honor-note{display:inline-block;margin-top:10px;font-size:.7rem;color:var(--slate-500);font-style:italic}
 
+/* 详细赛事成绩 */
+.results-detailed{margin-top:64px}
+.results-detailed-title{font-size:1.3rem;font-weight:700;color:var(--white);text-align:center;margin-bottom:40px;letter-spacing:2px;position:relative}
+.results-detailed-title::after{content:'';display:block;width:48px;height:2px;background:var(--sky-500);margin:12px auto 0;border-radius:1px}
+
+.results-year-block{margin-bottom:36px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius-lg);overflow:hidden}
+.results-year-head{padding:16px 28px;background:rgba(14,165,233,.08);border-bottom:1px solid rgba(255,255,255,.06)}
+.results-year-num{font-family:var(--font-en);font-size:1.4rem;font-weight:900;color:var(--sky-400);letter-spacing:4px}
+.results-list{padding:8px 0}
+
+.result-entry{display:flex;justify-content:space-between;align-items:center;padding:16px 28px;gap:20px;flex-wrap:wrap;border-bottom:1px solid rgba(255,255,255,.04)}
+.result-entry:last-child{border-bottom:none}
+.result-entry-featured{background:rgba(245,158,11,.04)}
+.result-event{display:flex;align-items:flex-start;gap:10px;flex:1;min-width:200px}
+.result-event h4{font-size:.9rem;font-weight:600;color:var(--white);line-height:1.5}
+
+.result-badge{flex-shrink:0;display:inline-block;padding:2px 10px;font-size:.65rem;font-weight:700;letter-spacing:1px;border-radius:100px;background:rgba(14,165,233,.15);color:var(--sky-300);margin-top:2px}
+.result-badge-national{background:rgba(245,158,11,.15);color:var(--gold-light)}
+.result-badge-special{background:rgba(34,197,94,.15);color:#4ADE80}
+
+.result-rank{display:flex;align-items:center;gap:8px;flex-wrap:wrap;flex-shrink:0}
+.result-rank span{font-size:.88rem;color:var(--slate-200);font-weight:600;white-space:nowrap}
+.rank-medal{font-size:1rem;margin-right:-2px}
+.rank-divider{color:var(--slate-600);margin:0 4px}
+
+/* ==================== 人物故事 ==================== */
+.stories-section{background:var(--slate-50);border-top:1px solid var(--slate-100)}
+.stories-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:32px;max-width:960px;margin:0 auto}
+
+.story-card{background:var(--white);border-radius:var(--radius-xl);overflow:hidden;border:1px solid var(--slate-100);transition:all .4s var(--ease)}
+.story-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+
+.story-card-visual{position:relative;aspect-ratio:16/9;overflow:hidden}
+.story-card-img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s var(--ease-out)}
+.story-card:hover .story-card-img{transform:scale(1.04)}
+.story-card-overlay{position:absolute;top:16px;left:16px;z-index:2}
+.story-label{display:inline-block;padding:4px 14px;background:rgba(0,0,0,.55);backdrop-filter:blur(8px);color:var(--white);font-size:.72rem;font-weight:700;border-radius:100px;letter-spacing:1px}
+.story-card-visual::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.4) 0%,transparent 50%);pointer-events:none}
+
+.story-card-body{padding:28px}
+.story-card-body h3{font-size:1.2rem;font-weight:700;color:var(--slate-900);margin-bottom:10px;letter-spacing:1px}
+.story-excerpt{font-size:.88rem;color:var(--slate-500);line-height:1.8;margin-bottom:16px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+
+.btn-outline-story{display:inline-flex;align-items:center;gap:6px;padding:10px 22px;font-size:.82rem;font-weight:600;color:var(--sky-600);border:1.5px solid var(--sky-200);border-radius:100px;background:transparent;transition:all .3s var(--ease);cursor:pointer;font-family:var(--font-cn);text-decoration:none}
+.btn-outline-story:hover{background:var(--sky-50);border-color:var(--sky-400);color:var(--sky-700)}
+@media (max-width:768px){.stories-grid{grid-template-columns:1fr;max-width:500px}}
+
+/* ==================== 招生转化 CTA ==================== */
+.enroll-cta-section{position:relative;padding:100px 0;overflow:hidden}
+.enroll-cta-bg{position:absolute;inset:0;background:linear-gradient(160deg,#0C4A6E 0%,#075985 30%,#047857 100%),radial-gradient(ellipse at 70% 40%,rgba(34,197,94,.12) 0%,transparent 60%),radial-gradient(ellipse at 30% 60%,rgba(14,165,233,.1) 0%,transparent 60%)}
+.enroll-cta-inner{position:relative;z-index:1;text-align:center}
+.enroll-cta-content{max-width:720px;margin:0 auto}
+
+.enroll-eyebrow{display:inline-block;padding:5px 18px;background:rgba(255,255,255,.1);color:var(--sky-200);font-size:.75rem;font-weight:700;letter-spacing:3px;border-radius:100px;margin-bottom:24px;border:1px solid rgba(255,255,255,.1)}
+.enroll-cta-content h2{font-size:3.2rem;font-weight:900;color:var(--white);letter-spacing:3px;line-height:1.2;margin-bottom:16px}
+.enroll-subtitle{font-size:1.15rem;color:rgba(255,255,255,.75);font-weight:500;margin-bottom:28px;line-height:1.7}
+
+.enroll-features{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin-bottom:36px}
+.enroll-features span{font-size:.82rem;color:rgba(255,255,255,.6);letter-spacing:.5px}
+
+.enroll-actions{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:24px}
+.btn-xl{padding:20px 52px;font-size:1.1rem}
+.btn-enroll-phone{background:transparent;color:var(--white);border:2px solid rgba(255,255,255,.35);border-radius:100px;display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:700;font-family:var(--font-cn);font-size:1.1rem;padding:20px 52px;letter-spacing:.5px;transition:all .35s var(--ease-out);cursor:pointer;text-decoration:none}
+.btn-enroll-phone:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.6);transform:translateY(-3px)}
+.enroll-note{font-size:.78rem;color:rgba(255,255,255,.35);letter-spacing:.5px}
+
+@media (max-width:768px){
+  .enroll-cta-section{padding:72px 0}
+  .enroll-cta-content h2{font-size:2.2rem;letter-spacing:1px}
+  .enroll-subtitle{font-size:1rem}
+  .enroll-features{gap:12px}
+  .enroll-actions{flex-direction:column;align-items:center}
+  .btn-xl,.btn-enroll-phone{width:100%;max-width:320px;text-align:center;justify-content:center}
+}
+@media (max-width:400px){.enroll-cta-content h2{font-size:1.7rem}}
+
+/* ==================== 暑期训练详情 ==================== */
+.summer-training-details{margin:36px auto 0;padding:32px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius-lg);max-width:680px;text-align:left}
+.summer-training-details h3{font-size:1.1rem;font-weight:700;color:var(--white);text-align:center;margin-bottom:24px;letter-spacing:2px}
+.training-info-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.training-info-item{display:flex;align-items:flex-start;gap:12px;padding:14px 16px;background:rgba(255,255,255,.04);border-radius:var(--radius);border:1px solid rgba(255,255,255,.06);transition:all .3s var(--ease)}
+.training-info-item:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.15)}
+.training-info-icon{font-size:1.3rem;flex-shrink:0;width:28px;text-align:center;line-height:1.4}
+.training-info-text strong{display:block;font-size:.72rem;color:var(--sky-300);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px;font-weight:600}
+.training-info-text p{font-size:.88rem;color:rgba(255,255,255,.85);font-weight:500;line-height:1.6}
+.training-note{margin-top:20px;text-align:center;font-size:.8rem;color:rgba(255,255,255,.5);line-height:1.7;letter-spacing:.5px}
+
+@media (max-width:768px){
+  .summer-training-details{padding:24px 20px;margin-top:28px}
+  .training-info-grid{grid-template-columns:1fr;gap:12px}
+  .training-info-item{padding:12px 14px}
+}
+
 /* ==================== 训练环境 ==================== */
 .environment-section{background:var(--white)}
 .env-photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
@@ -230,7 +382,21 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .env-photo-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
 .env-photo-placeholder{aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;font-size:3rem;transition:all .5s var(--ease-out)}
 .env-photo-card:hover .env-photo-placeholder{transform:scale(1.08)}
+.env-photo-img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;transition:transform .5s var(--ease-out)}
+.env-photo-card:hover .env-photo-img{transform:scale(1.06)}
 .env-photo-card h3{text-align:center;padding:16px;font-size:.95rem;font-weight:700;color:var(--slate-800);background:var(--white);border:1px solid var(--slate-100);border-top:none;border-radius:0 0 var(--radius-lg) var(--radius-lg)}
+
+/* 赛事图集 */
+.results-gallery{margin-top:56px}
+.results-gallery-title{font-size:1.1rem;font-weight:700;color:var(--white);text-align:center;margin-bottom:28px;letter-spacing:1px}
+.results-gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.gallery-item{border-radius:var(--radius);overflow:hidden;border:1px solid rgba(255,255,255,.08);transition:all .4s var(--ease);aspect-ratio:4/3}
+.gallery-item:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.5);border-color:rgba(255,255,255,.2)}
+.gallery-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s var(--ease-out)}
+.gallery-item:hover img{transform:scale(1.04)}
+.gallery-caption{text-align:center;padding:10px 8px;font-size:.75rem;color:var(--slate-400)}
+@media (max-width:768px){.results-gallery-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:400px){.results-gallery-grid{grid-template-columns:1fr;max-width:320px;margin:0 auto}}
 
 /* ==================== 联系我们 ==================== */
 .contact-section{background:var(--slate-50);border-top:1px solid var(--slate-100)}
@@ -243,6 +409,11 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .qr-hint{font-size:.85rem;color:var(--slate-500)}
 .qr-id{font-size:1rem;font-weight:700;color:var(--sky-600);margin-bottom:4px}
 .qr-sub{font-size:.78rem;color:var(--slate-400)}
+.qr-consult-note{margin-top:24px;padding-top:20px;border-top:1px solid var(--slate-100);text-align:left}
+.qr-consult-note h4{font-size:.8rem;font-weight:700;color:var(--slate-800);margin-bottom:10px;letter-spacing:.5px}
+.qr-consult-note ul{display:flex;flex-direction:column;gap:8px}
+.qr-consult-note li{font-size:.75rem;color:var(--slate-500);padding-left:16px;position:relative;line-height:1.6}
+.qr-consult-note li::before{content:'';position:absolute;left:0;top:8px;width:4px;height:4px;background:var(--sky-400);border-radius:50%}
 
 .contact-form-side .title-lg{margin-bottom:24px}
 .contact-info-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:4px}
@@ -266,7 +437,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .footer{background:var(--slate-950);color:var(--slate-400);padding:64px 0 0}
 .footer-main{display:grid;grid-template-columns:1fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid var(--slate-800)}
 .footer-logo-img{height:50px;width:auto;margin-bottom:14px}
-.footer-tagline{font-size:1.1rem;font-weight:600;color:var(--white);margin-bottom:8px}
+.footer-tagline{font-size:1.1rem;font-weight:600;color:var(--white);margin-bottom:4px}
+.footer-desc{font-size:.88rem;color:var(--slate-500)}
 .footer-nav{display:flex;gap:64px}
 .footer-nav-col h4{font-size:.85rem;font-weight:700;color:var(--white);margin-bottom:16px;letter-spacing:1px}
 .footer-nav-col a{display:block;font-size:.88rem;color:var(--slate-400);padding:6px 0;transition:all .25s var(--ease)}
