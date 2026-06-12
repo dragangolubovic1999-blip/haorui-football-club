@@ -307,6 +307,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 
 /* 卡片标题 */
 .pricing-card-title{font-size:1.45rem;font-weight:800;color:var(--slate-900);letter-spacing:1px;text-align:center;margin-top:4px}
+.pricing-subtitle{text-align:center;font-size:.82rem;color:var(--sky-600);font-weight:600;margin-top:-8px}
 .pricing-card-featured .pricing-card-title{margin-top:12px}
 
 /* 信息行 */
